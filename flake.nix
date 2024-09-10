@@ -18,8 +18,19 @@
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
 
-      perSystem = {pkgs, ...}: {
-        packages = self.overlays.default {} pkgs;
+      perSystem = {
+        lib,
+        pkgs,
+        system,
+        ...
+      }: {
+        # output packages only if they are available on the system
+        packages = let
+          isAvailable = name: drv: lib.meta.availableOn {inherit system;} drv;
+          flakePkgs = self.overlays.default {} pkgs;
+        in
+          lib.filterAttrs isAvailable flakePkgs;
+
         formatter = pkgs.alejandra;
       };
 
