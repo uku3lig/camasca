@@ -1,4 +1,5 @@
 {
+  lib,
   stdenv,
   fetchFromGitHub,
   cmake,
@@ -25,4 +26,9 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [cmake ninja wrapQtAppsHook];
   buildInputs = [qtbase qtwayland kcoreaddons kwidgetsaddons kconfig];
+
+  meta = {
+    mainProgram = "koi";
+    platforms = lib.platforms.linux;
+  };
 })
