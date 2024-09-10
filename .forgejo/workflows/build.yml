@@ -1,0 +1,33 @@
+name: Build packages
+
+on:
+  push:
+
+jobs:
+  build:
+    name: Build derivations
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v14
+
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: uku3lig
+          authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+
+      - name: Build
+        run: |
+          nix run \
+            github:Mic92/nix-fast-build -- \
+            --no-nom \
+            --skip-cached \
+            --systems 'x86_64-linux' \
+            --option accept-flake-config true \
+            --option allow-import-from-derivation false \
+            --flake '.#packages'
