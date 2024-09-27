@@ -1,12 +1,10 @@
-self: {
+{
   lib,
   config,
   pkgs,
   ...
 }: let
   cfg = config.services.reposilite;
-
-  inherit (pkgs.stdenv.hostPlatform) system;
 
   inherit
     (lib)
@@ -23,7 +21,7 @@ self: {
 in {
   options.services.reposilite = {
     enable = mkEnableOption "reposilite";
-    package = mkPackageOption self.packages.${system} "reposilite" {};
+    package = mkPackageOption pkgs "reposilite" {};
     environmentFile = mkOption {
       description = mdDoc ''
         Environment file as defined in {manpage}`systemd.exec(5)`

@@ -38,7 +38,7 @@
         overlays.default = import ./pkgs/all-packages.nix;
 
         nixosModules = {
-          reposilite = import ./modules/reposilite.nix self;
+          reposilite = import ./modules/reposilite.nix;
         };
       };
     };
