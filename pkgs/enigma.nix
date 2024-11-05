@@ -22,8 +22,7 @@ stdenv.mkDerivation (finalAttrs: {
   installPhase = with finalAttrs; ''
     runHook preInstall
 
-    mkdir -p $out/bin $out/share/${name}
-    cp ${src} $out/share/${name}/${name}.jar
+    install -Dm644 $src $out/share/${name}.jar
     makeWrapper ${jdk}/bin/java $out/bin/${name} --add-flags "-jar $out/share/${name}/${name}.jar"
 
     runHook postInstall

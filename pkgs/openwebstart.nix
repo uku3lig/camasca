@@ -8,7 +8,7 @@
   openjdk8,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  pname = "OpenWebStart";
+  pname = "openwebstart";
   version = "1.5.2";
 
   src = fetchurl {
@@ -18,31 +18,22 @@ stdenv.mkDerivation (finalAttrs: {
 
   nativeBuildInputs = [dpkg makeWrapper copyDesktopItems];
 
+  unpackCmd = "dpkg-deb -x $src .";
   sourceRoot = "opt/OpenWebStart";
-
-  unpackPhase = ''
-    runHook preUnpack
-
-    dpkg-deb -x $src .
-
-    runHook postUnpack
-  '';
 
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/lib
-    cp openwebstart.jar $out/lib/
+    install -Dm644 openwebstart.jar -t $out/lib
+
+    install -Dm644 App-Icon-512.png $out/share/pixmaps/openwebstart-settings.png
+    install -Dm644 Icon-512.png $out/share/pixmaps/openwebstart.png
 
     makeWrapper ${openjdk8}/bin/java $out/bin/openwebstart \
       --add-flags "-cp $out/lib/openwebstart.jar com.openwebstart.launcher.OpenWebStartLauncher"
 
     makeWrapper ${openjdk8}/bin/java $out/bin/openwebstart-settings \
       --add-flags "-cp $out/lib/openwebstart.jar com.openwebstart.launcher.ControlPanelLauncher"
-
-    mkdir -p $out/share/pixmaps
-    cp App-Icon-512.png $out/share/pixmaps/openwebstart-settings.png
-    cp Icon-512.png $out/share/pixmaps/openwebstart.png
 
     runHook postInstall
   '';
