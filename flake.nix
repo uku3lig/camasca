@@ -3,44 +3,35 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     self,
-    flake-parts,
-    ...
-  } @ inputs:
-    flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    nixpkgs,
+  }: let
+    inherit (nixpkgs) lib;
 
-      perSystem = {
-        lib,
-        pkgs,
-        system,
-        ...
-      }: {
-        # output packages only if they are available on the system
-        packages = let
-          isAvailable = name: drv: lib.meta.availableOn {inherit system;} drv;
-          flakePkgs = self.overlays.default {} pkgs;
-        in
-          lib.filterAttrs isAvailable flakePkgs;
+    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
 
-        formatter = pkgs.alejandra;
-      };
+    pkgsFor = system: import nixpkgs {inherit system;};
+    forEachSystem = lib.genAttrs systems;
+  in {
+    packages = forEachSystem (
+      system: let
+        pkgs = pkgsFor system;
+        isAvailable = name: drv: lib.meta.availableOn {inherit system;} drv;
+        flakePkgs = self.overlays.default {} pkgs;
+      in
+        lib.filterAttrs isAvailable flakePkgs
+    );
 
-      flake = {
-        overlays.default = import ./pkgs/all-packages.nix;
+    overlays.default = import ./pkgs/all-packages.nix;
 
-        nixosModules = {
-          reposilite = import ./modules/reposilite.nix;
-          asus-numpad = import ./modules/asus-numpad.nix self;
-        };
-      };
+    nixosModules = {
+      reposilite = import ./modules/reposilite.nix;
+      asus-numpad = import ./modules/asus-numpad.nix self;
     };
+
+    formatter = forEachSystem (system: (pkgsFor system).alejandra);
+  };
 }
