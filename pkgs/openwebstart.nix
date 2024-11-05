@@ -42,7 +42,7 @@ stdenv.mkDerivation (finalAttrs: {
   dontBuild = true;
   dontCheck = true;
 
-  desktopFiles = [
+  desktopItems = [
     (makeDesktopItem {
       name = "OpenWebStart Settings";
       type = "Application";
