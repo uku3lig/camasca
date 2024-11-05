@@ -21,10 +21,16 @@ stdenv.mkDerivation (finalAttrs: {
   sourceRoot = "opt/OpenWebStart";
 
   unpackPhase = ''
+    runHook preUnpack
+
     dpkg-deb -x $src .
+
+    runHook postUnpack
   '';
 
   installPhase = ''
+    runHook preInstall
+
     mkdir -p $out/lib
     cp openwebstart.jar $out/lib/
 
@@ -37,6 +43,8 @@ stdenv.mkDerivation (finalAttrs: {
     mkdir -p $out/share/pixmaps
     cp App-Icon-512.png $out/share/pixmaps/openwebstart-settings.png
     cp Icon-512.png $out/share/pixmaps/openwebstart.png
+
+    runHook postInstall
   '';
 
   dontBuild = true;
