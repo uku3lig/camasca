@@ -1,0 +1,55 @@
+name: Update flake.lock
+
+on:
+  workflow_dispatch:
+  schedule:
+    - 0 0 * * 1
+
+jobs:
+  update_flake_lock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v15
+
+      - name: Set git config
+        run: |
+          git config --global user.name "ukubot"
+          git config --global user.email "bot@uku.moe"
+          git config --global user.signingkey "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJophqKVpoaeFJP1Wf3SEcfOMObogY6738lx2Ng+LGcQ ukubot"
+          git config --global gpg.format "ssh"
+          git config --global commit.gpgsign "true"
+
+      - name: Setup SSH Key
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p /home/runner/.ssh
+          echo "${{ secrets.SSH_KEY }}" > /home/runner/.ssh/action
+          chmod 600 /home/runner/.ssh/action
+
+          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+          ssh-add /home/runner/.ssh/action
+
+      - name: Update lockfile
+        id: update_lockfile
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          git checkout -b "update-lock-$(date -I)"
+          nix flake update --commit-lock-file
+          echo "commits=$(git log --oneline origin/main..HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Create Pull Request
+        if: ${{ steps.update_lockfile.outputs.commits != '' }}
+        run: |
+          git push origin HEAD
+          curl -X POST \
+            '${{ env.GITHUB_SERVER_URL }}/api/v1/repos/${{ env.GITHUB_REPOSITORY }}/pulls' \
+            -H 'Content-Type: application/json' \
+            -H 'Authorization: token ${{ secrets.FORGEJO_TOKEN }}' \
+            -d "{\"base\": \"main\", \"head\": \"update-lock-$(date -I)\", \"title\": \"chore: update flake.lock ($(date -I))\"}"
