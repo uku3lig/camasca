@@ -5,36 +5,23 @@
   ...
 }: let
   cfg = config.services.reposilite;
-
-  inherit
-    (lib)
-    getExe
-    literalExpression
-    mdDoc
-    mkDefault
-    mkEnableOption
-    mkIf
-    mkOption
-    mkPackageOption
-    types
-    ;
 in {
   options.services.reposilite = {
-    enable = mkEnableOption "reposilite";
-    package = mkPackageOption pkgs "reposilite" {};
-    environmentFile = mkOption {
-      description = mdDoc ''
+    enable = lib.mkEnableOption "reposilite";
+    package = lib.mkPackageOption pkgs "reposilite" {};
+    environmentFile = lib.mkOption {
+      description = lib.mdDoc ''
         Environment file as defined in {manpage}`systemd.exec(5)`
       '';
-      type = types.nullOr types.path;
+      type = lib.types.nullOr lib.types.path;
       default = null;
-      example = literalExpression ''
+      example = lib.literalExpression ''
         "/run/agenix.d/1/reposilite"
       '';
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     users = {
       users.reposilite = {
         isSystemUser = true;
@@ -46,17 +33,17 @@ in {
 
     systemd.services."reposilite" = {
       enable = true;
-      wantedBy = mkDefault ["multi-user.target"];
-      after = mkDefault ["network.target"];
+      wantedBy = lib.mkDefault ["multi-user.target"];
+      after = lib.mkDefault ["network.target"];
       script = ''
-        ${getExe cfg.package}
+        ${lib.getExe cfg.package}
       '';
 
       serviceConfig = {
         Type = "simple";
         Restart = "always";
 
-        EnvironmentFile = mkIf (cfg.environmentFile != null) cfg.environmentFile;
+        EnvironmentFile = lib.mkIf (cfg.environmentFile != null) cfg.environmentFile;
 
         StateDirectory = "reposilite";
         StateDirectoryMode = "0700";
