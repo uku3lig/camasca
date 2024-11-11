@@ -4,4 +4,5 @@ final: prev: {
   koi = prev.kdePackages.callPackage ./koi.nix {};
   asus-numpad = prev.callPackage ./asus-numpad.nix {};
   openwebstart = prev.callPackage ./openwebstart.nix {};
+  json2cdn = prev.callPackage ./json2cdn/package.nix {};
 }
