@@ -9,7 +9,7 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "openwebstart";
-  version = "1.5.2";
+  version = "1.11.0";
 
   src = fetchurl {
     url =
@@ -17,7 +17,7 @@ stdenv.mkDerivation (finalAttrs: {
       "https://github.com/karakun/OpenWebStart/releases/download/v${version}/OpenWebStart_linux_${
         builtins.replaceStrings [ "." ] [ "_" ] version
       }.deb";
-    hash = "sha256-thB/JWbF/Xk/PLurwXvWwzQTyCeV1hU7Zm8BjrG6lS0=";
+    hash = "sha256-X9KAMBsUHYnRoaWn5Ylg8qZH3wwgLJNKRaQyyexy4Vo=";
   };
 
   nativeBuildInputs = [
