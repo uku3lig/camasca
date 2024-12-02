@@ -1,27 +1,39 @@
-self: {
+self:
+{
   lib,
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.services.asus-numpad;
   inherit (pkgs.stdenv.hostPlatform) system;
 
-  toml = pkgs.formats.toml {};
-in {
+  toml = pkgs.formats.toml { };
+in
+{
   options.services.asus-numpad = {
     enable = lib.mkEnableOption "asus-numpad";
-    package = lib.mkPackageOption self.packages.${system} "asus-numpad" {};
+    package = lib.mkPackageOption self.packages.${system} "asus-numpad" { };
 
     settings = lib.mkOption {
       description = "Options for the configuration file located at /etc/xdg/asus_numpad.toml. See https://github.com/iamkroot/asus-numpad#configuration";
-      example = {layout = "M433IA";};
+      example = {
+        layout = "M433IA";
+      };
       type = lib.types.submodule {
         freeformType = toml.type;
 
         options.layout = lib.mkOption {
           description = "Numpad key layout.";
-          type = lib.types.enum ["UX433FA" "M433IA" "UX581" "GX701" "GX531" "G533"];
+          type = lib.types.enum [
+            "UX433FA"
+            "M433IA"
+            "UX581"
+            "GX701"
+            "GX531"
+            "G533"
+          ];
         };
       };
     };
@@ -37,7 +49,7 @@ in {
 
     systemd.services.asus-numpad = {
       enable = true;
-      wantedBy = ["multi-user.target"];
+      wantedBy = [ "multi-user.target" ];
       script = ''
         ${lib.getExe cfg.package}
       '';

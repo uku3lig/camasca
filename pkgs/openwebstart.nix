@@ -12,11 +12,19 @@ stdenv.mkDerivation (finalAttrs: {
   version = "1.5.2";
 
   src = fetchurl {
-    url = with finalAttrs; "https://github.com/karakun/OpenWebStart/releases/download/v${version}/OpenWebStart_linux_${builtins.replaceStrings ["."] ["_"] version}.deb";
+    url =
+      with finalAttrs;
+      "https://github.com/karakun/OpenWebStart/releases/download/v${version}/OpenWebStart_linux_${
+        builtins.replaceStrings [ "." ] [ "_" ] version
+      }.deb";
     hash = "sha256-thB/JWbF/Xk/PLurwXvWwzQTyCeV1hU7Zm8BjrG6lS0=";
   };
 
-  nativeBuildInputs = [dpkg makeWrapper copyDesktopItems];
+  nativeBuildInputs = [
+    dpkg
+    makeWrapper
+    copyDesktopItems
+  ];
 
   unpackCmd = "dpkg-deb -x $src .";
   sourceRoot = "opt/OpenWebStart";
@@ -57,7 +65,7 @@ stdenv.mkDerivation (finalAttrs: {
       noDisplay = true;
       exec = "openwebstart %f";
       icon = "openwebstart-settings";
-      mimeTypes = ["application/x-java-jnlp-file"];
+      mimeTypes = [ "application/x-java-jnlp-file" ];
     })
   ];
 

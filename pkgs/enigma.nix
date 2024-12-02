@@ -11,13 +11,18 @@ stdenv.mkDerivation (finalAttrs: {
   version = "2.5.0";
 
   src = fetchurl {
-    url = with finalAttrs; "https://maven.fabricmc.net/cuchaz/enigma-swing/${version}/enigma-swing-${version}-all.jar";
+    url =
+      with finalAttrs;
+      "https://maven.fabricmc.net/cuchaz/enigma-swing/${version}/enigma-swing-${version}-all.jar";
     hash = "sha256-yOPPTKt96aRSbziYDBLBKqfLS2R9GeXgz5m2t1fgFHo=";
   };
 
   dontUnpack = true;
 
-  nativeBuildInputs = [makeWrapper copyDesktopItems];
+  nativeBuildInputs = [
+    makeWrapper
+    copyDesktopItems
+  ];
 
   installPhase = with finalAttrs; ''
     runHook preInstall

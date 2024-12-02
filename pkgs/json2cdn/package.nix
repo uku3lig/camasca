@@ -5,7 +5,8 @@
   makeWrapper,
   gradle_8,
   jre_headless,
-}: let
+}:
+let
   self = stdenv.mkDerivation (finalAttrs: {
     pname = "json2cdn";
     version = "0.1.0";
@@ -17,7 +18,10 @@
       hash = "sha256-pHmzeZHZyr3FyfkXwrdPk+lcHQKH6t4pnDD9ImMgSV8=";
     };
 
-    nativeBuildInputs = [gradle_8 makeWrapper];
+    nativeBuildInputs = [
+      gradle_8
+      makeWrapper
+    ];
 
     mitmCache = gradle_8.fetchDeps {
       pkg = self;
@@ -42,12 +46,15 @@
     meta = {
       description = "converts a json file to dzikoysk's cdn format";
       homepage = "https://github.com/uku3lig/json2cdn";
-      sourceProvenance = with lib.sourceTypes; [fromSource binaryBytecode];
+      sourceProvenance = with lib.sourceTypes; [
+        fromSource
+        binaryBytecode
+      ];
       license = lib.licenses.mit;
-      maintainers = with lib.maintainers; [uku3lig];
+      maintainers = with lib.maintainers; [ uku3lig ];
       inherit (jre_headless.meta) platforms;
       mainProgram = "json2cdn";
     };
   });
 in
-  self
+self

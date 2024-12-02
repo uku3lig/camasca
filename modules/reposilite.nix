@@ -3,12 +3,14 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.services.reposilite;
-in {
+in
+{
   options.services.reposilite = {
     enable = lib.mkEnableOption "reposilite";
-    package = lib.mkPackageOption pkgs "reposilite" {};
+    package = lib.mkPackageOption pkgs "reposilite" { };
     environmentFile = lib.mkOption {
       description = lib.mdDoc ''
         Environment file as defined in {manpage}`systemd.exec(5)`
@@ -28,13 +30,13 @@ in {
         group = "reposilite";
       };
 
-      groups.reposilite = {};
+      groups.reposilite = { };
     };
 
     systemd.services."reposilite" = {
       enable = true;
-      wantedBy = lib.mkDefault ["multi-user.target"];
-      after = lib.mkDefault ["network.target"];
+      wantedBy = lib.mkDefault [ "multi-user.target" ];
+      after = lib.mkDefault [ "network.target" ];
       script = ''
         ${lib.getExe cfg.package}
       '';

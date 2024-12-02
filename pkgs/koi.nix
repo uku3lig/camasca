@@ -24,8 +24,18 @@ stdenv.mkDerivation (finalAttrs: {
 
   sourceRoot = "source/src";
 
-  nativeBuildInputs = [cmake ninja wrapQtAppsHook];
-  buildInputs = [qtbase qtwayland kcoreaddons kwidgetsaddons kconfig];
+  nativeBuildInputs = [
+    cmake
+    ninja
+    wrapQtAppsHook
+  ];
+  buildInputs = [
+    qtbase
+    qtwayland
+    kcoreaddons
+    kwidgetsaddons
+    kconfig
+  ];
 
   meta = {
     mainProgram = "koi";
