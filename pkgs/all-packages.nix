@@ -1,9 +1,9 @@
 final: prev: {
-  enigma = prev.callPackage ./enigma.nix { };
-  vineflower = prev.callPackage ./vineflower.nix { };
-  koi = prev.kdePackages.callPackage ./koi.nix { };
   asus-numpad = prev.callPackage ./asus-numpad.nix { };
-  openwebstart = prev.callPackage ./openwebstart.nix { };
-  json2cdn = prev.callPackage ./json2cdn/package.nix { };
+  enigma = prev.callPackage ./enigma.nix { };
   jaspersoft-studio-community = prev.callPackage ./jaspersoft-studio-community.nix { };
+  json2cdn = prev.callPackage ./json2cdn/package.nix { };
+  koi = prev.kdePackages.callPackage ./koi.nix { };
+  openwebstart = prev.callPackage ./openwebstart.nix { };
+  vineflower = prev.callPackage ./vineflower.nix { };
 }
