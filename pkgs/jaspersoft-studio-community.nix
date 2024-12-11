@@ -5,6 +5,7 @@
   makeDesktopItem,
   requireFile,
   temurin-bin-17,
+  wrapGAppsHook3,
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "jaspersoft-studio-community";
@@ -19,6 +20,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   nativeBuildInputs = [
     autoPatchelfHook
     copyDesktopItems
+    wrapGAppsHook3
   ];
 
   installPhase = ''
@@ -38,8 +40,13 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     runHook postInstall
   '';
 
+  preFixup = ''
+    wrapGApp "$out/share/jaspersoft-studio-community/Jaspersoft Studio"
+  '';
+
   dontBuild = true;
   dontCheck = true;
+  dontWrapGApps = true;
 
   desktopItems = [
     (makeDesktopItem {
