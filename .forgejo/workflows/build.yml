@@ -33,4 +33,4 @@ jobs:
             --systems 'x86_64-linux' \
             --option accept-flake-config true \
             --option allow-import-from-derivation false \
-            --flake '.#packages'
+            --flake '.#hydraJobs'

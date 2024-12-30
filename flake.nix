@@ -42,5 +42,17 @@
       };
 
       formatter = forEachSystem (system: (pkgsFor system).nixfmt-rfc-style);
+
+      hydraJobs =
+        let
+          ciSystem = "x86_64-linux";
+          isBuildable =
+            name: drv:
+            (!drv ? meta.hydraPlatforms)
+            || lib.any (lib.meta.platformMatch { system = ciSystem; }) drv.meta.hydraPlatforms;
+
+          packages = self.packages.${ciSystem};
+        in
+        lib.filterAttrs isBuildable packages;
     };
 }
