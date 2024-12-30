@@ -42,5 +42,8 @@ stdenv.mkDerivation (finalAttrs: {
     })
   ];
 
-  meta.mainProgram = "enigma";
+  meta = {
+    mainProgram = "enigma";
+    inherit (jdk.meta) platforms;
+  };
 })

@@ -28,5 +28,8 @@ stdenv.mkDerivation (finalAttrs: {
     runHook postInstall
   '';
 
-  meta.mainProgram = "vineflower";
+  meta = {
+    mainProgram = "vineflower";
+    inherit (jre_headless.meta) platforms;
+  };
 })

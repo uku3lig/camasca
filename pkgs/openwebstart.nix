@@ -69,5 +69,8 @@ stdenv.mkDerivation (finalAttrs: {
     })
   ];
 
-  meta.mainProgram = "openwebstart-settings";
+  meta = {
+    mainProgram = "openwebstart-settings";
+    inherit (openjdk8.meta) platforms;
+  };
 })

@@ -58,5 +58,9 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     })
   ];
 
-  meta.mainProgram = "jaspersoft-studio-community";
+  meta = {
+    mainProgram = "jaspersoft-studio-community";
+    inherit (temurin-bin-17.meta) platforms;
+    hydraPlatforms = [ ];
+  };
 })
