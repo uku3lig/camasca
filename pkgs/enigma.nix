@@ -7,7 +7,7 @@
   copyDesktopItems,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  name = "enigma";
+  pname = "enigma";
   version = "2.5.2";
 
   src = fetchurl {
@@ -22,11 +22,11 @@ stdenv.mkDerivation (finalAttrs: {
     copyDesktopItems
   ];
 
-  installPhase = with finalAttrs; ''
+  installPhase = ''
     runHook preInstall
 
-    install -Dm644 $src $out/share/${name}/${name}.jar
-    makeWrapper ${jdk}/bin/java $out/bin/${name} --add-flags "-jar $out/share/${name}/${name}.jar"
+    install -Dm644 $src $out/share/enigma.jar
+    makeWrapper ${jdk}/bin/java $out/bin/enigma --add-flags "-jar $out/share/enigma.jar"
 
     runHook postInstall
   '';
