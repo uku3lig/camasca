@@ -5,13 +5,11 @@
   jre_headless,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  name = "vineflower";
+  pname = "vineflower";
   version = "1.10.1";
 
   src = fetchurl {
-    url =
-      with finalAttrs;
-      "https://github.com/Vineflower/vineflower/releases/download/${version}/vineflower-${version}.jar";
+    url = "https://github.com/Vineflower/vineflower/releases/download/${finalAttrs.version}/vineflower-${finalAttrs.version}.jar";
     hash = "sha256-ubII5QeTtkZXprYpIGdSZhP1Sd50BfkkNiSwL0J25Ak=";
   };
 
@@ -19,11 +17,11 @@ stdenv.mkDerivation (finalAttrs: {
 
   dontUnpack = true;
 
-  installPhase = with finalAttrs; ''
+  installPhase = ''
     runHook preInstall
 
-    install -Dm644 $src $out/share/${name}.jar
-    makeWrapper ${jre_headless}/bin/java $out/bin/${name} --add-flags "-jar $out/share/${name}/${name}.jar"
+    install -Dm644 $src $out/share/vineflower.jar
+    makeWrapper ${jre_headless}/bin/java $out/bin/vineflower --add-flags "-jar $out/share/vineflower.jar"
 
     runHook postInstall
   '';
