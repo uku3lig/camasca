@@ -39,6 +39,7 @@
       nixosModules = {
         reposilite = import ./modules/reposilite.nix;
         asus-numpad = import ./modules/asus-numpad.nix self;
+        shlink = import ./modules/shlink.nix self;
       };
 
       formatter = forEachSystem (system: (pkgsFor system).nixfmt-rfc-style);
