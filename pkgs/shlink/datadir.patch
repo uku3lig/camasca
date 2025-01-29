@@ -7,7 +7,7 @@ index 0a99d323..c687688a 100644
  
          'lazy_services' => [
 -            'proxies_target_dir' => 'data/proxies',
-+            'proxies_target_dir' => '/var/lib/proxies',
++            'proxies_target_dir' => '/var/lib/shlink/proxies',
              'proxies_namespace' => 'ShlinkProxy',
              'write_proxy_files' => EnvVars::isProdEnv(),
          ],
