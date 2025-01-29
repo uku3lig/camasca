@@ -1,0 +1,61 @@
+diff --git a/config/autoload/dependencies.global.php b/config/autoload/dependencies.global.php
+index 0a99d323..c687688a 100644
+--- a/config/autoload/dependencies.global.php
++++ b/config/autoload/dependencies.global.php
+@@ -35,7 +35,7 @@ return [
+         ],
+ 
+         'lazy_services' => [
+-            'proxies_target_dir' => 'data/proxies',
++            'proxies_target_dir' => '/var/lib/proxies',
+             'proxies_namespace' => 'ShlinkProxy',
+             'write_proxy_files' => EnvVars::isProdEnv(),
+         ],
+diff --git a/config/autoload/entity-manager.global.php b/config/autoload/entity-manager.global.php
+index 1bd3db44..d00751e4 100644
+--- a/config/autoload/entity-manager.global.php
++++ b/config/autoload/entity-manager.global.php
+@@ -46,7 +46,7 @@ return (static function (): array {
+     $connection = match ($driver) {
+         null, 'sqlite' => [
+             'driver' => 'pdo_sqlite',
+-            'path' => 'data/database.sqlite',
++            'path' => '/var/lib/shlink/database.sqlite',
+         ],
+         default => [
+             'driver' => $doctrineDriver,
+@@ -65,7 +65,7 @@ return (static function (): array {
+ 
+         'entity_manager' => [
+             'orm' => [
+-                'proxies_dir' => 'data/proxies',
++                'proxies_dir' => '/var/lib/shlink/proxies',
+                 'load_mappings_using_functional_style' => true,
+                 'default_repository_classname' => EntitySpecificationRepository::class,
+                 'listeners' => [
+diff --git a/config/autoload/locks.global.php b/config/autoload/locks.global.php
+index 28426c6a..0d70b20d 100644
+--- a/config/autoload/locks.global.php
++++ b/config/autoload/locks.global.php
+@@ -14,7 +14,7 @@ use const Shlinkio\Shlink\LOCAL_LOCK_FACTORY;
+ return [
+ 
+     'locks' => [
+-        'locks_dir' => __DIR__ . '/../../data/locks',
++        'locks_dir' => '/tmp/shlink-data/locks',
+     ],
+ 
+     'dependencies' => [
+diff --git a/config/autoload/router.global.php b/config/autoload/router.global.php
+index 0464ca83..20927475 100644
+--- a/config/autoload/router.global.php
++++ b/config/autoload/router.global.php
+@@ -14,7 +14,7 @@ return [
+             // Disabling config cache for cli, ensures it's never used for RoadRunner, and also that console
+             // commands don't generate a cache file that's then used by php-fpm web executions
+             FastRouteRouter::CONFIG_CACHE_ENABLED => EnvVars::isProdEnv() && PHP_SAPI !== 'cli',
+-            FastRouteRouter::CONFIG_CACHE_FILE => 'data/cache/fastroute_cached_routes.php',
++            FastRouteRouter::CONFIG_CACHE_FILE => '/var/lib/shlink/cache/fastroute_cached_routes.php',
+         ],
+     ],
+ 
