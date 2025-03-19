@@ -42,7 +42,7 @@
         shlink = lib.modules.importApply ./modules/shlink.nix { inherit self; };
       };
 
-      formatter = forEachSystem (system: (pkgsFor system).nixfmt-rfc-style);
+      formatter = forEachSystem (system: (pkgsFor system).nixfmt-tree);
 
       hydraJobs =
         let
