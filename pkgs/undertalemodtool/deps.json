@@ -1,0 +1,92 @@
+[
+  {
+    "pname": "Fody",
+    "version": "6.9.1",
+    "hash": "sha256-yDzLI06oFVNI4wiexSQK114YZlSOoGPTr8LIlr22M8I="
+  },
+  {
+    "pname": "Magick.NET-Q8-AnyCPU",
+    "version": "13.10.0",
+    "hash": "sha256-mG+aUxfTlipYWDBml3pmMx5ELCJcM7KbDPL0/xlRjPk="
+  },
+  {
+    "pname": "Magick.NET.Core",
+    "version": "13.10.0",
+    "hash": "sha256-nbWL93wzrqdL57CgKdxOqmeoSeD7HK36TuLWxj1AQy8="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.Analyzers",
+    "version": "3.3.4",
+    "hash": "sha256-qDzTfZBSCvAUu9gzq2k+LOvh6/eRvJ9++VCNck/ZpnE="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.Common",
+    "version": "4.11.0",
+    "hash": "sha256-cX/xgM0VmS+Bsu63KZk2ofjFOOy1mzI+CCVEY6kI+Qk="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.CSharp",
+    "version": "4.11.0",
+    "hash": "sha256-E9jEOjp9g/CFecsc5/QfRKOPXMRpSw0Tf79XsRgL+Mk="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.CSharp.Scripting",
+    "version": "4.11.0",
+    "hash": "sha256-8zooZAPoUIXB4KwI5joPU3QHg1iq4UP+u3g6TTXN+Lg="
+  },
+  {
+    "pname": "Microsoft.CodeAnalysis.Scripting.Common",
+    "version": "4.11.0",
+    "hash": "sha256-2JC9TipfoAQ1ug4i+PexZemJHFhjnFNv/FqjBIsV6J0="
+  },
+  {
+    "pname": "Microsoft.CSharp",
+    "version": "4.4.1",
+    "hash": "sha256-7/gsQHWAuFWrcVpVharASTNL+Mvl6Gw+AAw41k0MzXw="
+  },
+  {
+    "pname": "Microsoft.CSharp",
+    "version": "4.7.0",
+    "hash": "sha256-Enknv2RsFF68lEPdrf5M+BpV1kHoLTVRApKUwuk/pj0="
+  },
+  {
+    "pname": "Newtonsoft.Json",
+    "version": "13.0.3",
+    "hash": "sha256-hy/BieY4qxBWVVsDqqOPaLy1QobiIapkbrESm6v2PHc="
+  },
+  {
+    "pname": "PropertyChanged.Fody",
+    "version": "4.1.0",
+    "hash": "sha256-SAId/w7y5RZqMnpnJ6nmMjaPXQIr2h6QsRKZ4yuoYYU="
+  },
+  {
+    "pname": "runtime.osx.10.10-x64.CoreCompat.System.Drawing",
+    "version": "6.0.5.128",
+    "hash": "sha256-upmM1/1NGfoBrpNfbaAxFBqqDo+vQ5eDkA/WlxUcXdg="
+  },
+  {
+    "pname": "SharpZipLib",
+    "version": "1.4.2",
+    "hash": "sha256-/giVqikworG2XKqfN9uLyjUSXr35zBuZ2FX2r8X/WUY="
+  },
+  {
+    "pname": "System.Collections.Immutable",
+    "version": "8.0.0",
+    "hash": "sha256-F7OVjKNwpqbUh8lTidbqJWYi476nsq9n+6k0+QVRo3w="
+  },
+  {
+    "pname": "System.CommandLine",
+    "version": "2.0.0-beta1.21308.1",
+    "hash": "sha256-14pgyMy3F86XickXZB+AMX6uMTkVvBg5tV90p1G+4yY="
+  },
+  {
+    "pname": "System.Memory",
+    "version": "4.5.4",
+    "hash": "sha256-3sCEfzO4gj5CYGctl9ZXQRRhwAraMQfse7yzKoRe65E="
+  },
+  {
+    "pname": "System.Reflection.Metadata",
+    "version": "8.0.0",
+    "hash": "sha256-dQGC30JauIDWNWXMrSNOJncVa1umR1sijazYwUDdSIE="
+  }
+]
