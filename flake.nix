@@ -37,7 +37,6 @@
       overlays.default = import ./pkgs/all-packages.nix;
 
       nixosModules = {
-        reposilite = import ./modules/reposilite.nix;
         asus-numpad = lib.modules.importApply ./modules/asus-numpad.nix { inherit self; };
         shlink = lib.modules.importApply ./modules/shlink.nix { inherit self; };
       };
