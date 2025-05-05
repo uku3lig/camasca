@@ -36,6 +36,10 @@ php84.buildComposerProject (finalAttrs: {
   composerLock = ./composer.lock;
   vendorHash = "sha256-M+3eGiezHsr8H5TyUXhYLsVK316iZzcFVSo9Jwc5W/o=";
 
+  postPatch = ''
+    sed -i "s/%SHLINK_VERSION%/${finalAttrs.version}/g" module/Core/src/Config/Options/AppOptions.php
+  '';
+
   postInstall = ''
     mkdir -p $out/bin
     ln -s $out/share/php/shlink/bin/cli $out/bin/shlink
