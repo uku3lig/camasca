@@ -7,5 +7,6 @@ final: prev: {
   project-sekai-cursors = prev.callPackage ./project-sekai-cursors/package.nix { };
   shlink = prev.callPackage ./shlink/package.nix { };
   sql-developer = prev.callPackage ./sql-developer.nix { };
+  touhou-cursors = prev.callPackage ./touhou-cursors.nix { };
   vineflower = prev.callPackage ./vineflower.nix { };
 }
