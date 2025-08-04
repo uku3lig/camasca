@@ -5,13 +5,13 @@
 }:
 php84.buildComposerProject (finalAttrs: {
   pname = "shlink";
-  version = "4.4.6";
+  version = "4.5.0";
 
   src = fetchFromGitHub {
     owner = "shlinkio";
     repo = "shlink";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-5JHe1xarMtNFScaTDkpaNwF1OAhmjw/R3MksALQfhhg=";
+    hash = "sha256-tj0SJYOYQHZl+FlWPTG3AXYhCA1qy2Yq2Zq47wm4x6Y=";
   };
 
   patches = [ ./datadir.patch ];
@@ -34,7 +34,7 @@ php84.buildComposerProject (finalAttrs: {
   );
 
   composerLock = ./composer.lock;
-  vendorHash = "sha256-M+3eGiezHsr8H5TyUXhYLsVK316iZzcFVSo9Jwc5W/o=";
+  vendorHash = "sha256-Q5xSsUh5s4qlEp+PNBtdsfOND0GpcMUPnnJmT4EMS8w=";
 
   postPatch = ''
     sed -i "s/%SHLINK_VERSION%/${finalAttrs.version}/g" module/Core/src/Config/Options/AppOptions.php
