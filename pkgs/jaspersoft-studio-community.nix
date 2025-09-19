@@ -25,12 +25,12 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "jaspersoft-studio-community";
-  version = "6.21.3";
+  version = "6.21.5";
 
   src = requireFile {
     name = "js-studiocomm_${finalAttrs.version}_linux_x86_64.tgz";
     url = "https://community.jaspersoft.com/download-jaspersoft/community-edition/jaspersoft-studio_${finalAttrs.version}";
-    hash = "sha256-llxWq2hNTlHC2slhov0VDK2mJu2NZ2xOh3Rut9XDKac=";
+    hash = "sha256-PnMIc2HvGF+qdeuqPmua3XYh3KhnSQuPN9Ugg/Hfvn0=";
   };
 
   nativeBuildInputs = [
