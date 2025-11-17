@@ -8,11 +8,11 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "enigma";
-  version = "2.5.2";
+  version = "4.0.2";
 
   src = fetchurl {
     url = "https://maven.fabricmc.net/cuchaz/enigma-swing/${finalAttrs.version}/enigma-swing-${finalAttrs.version}-all.jar";
-    hash = "sha256-j4fqv6Ch7AZ9mBe+fDh0sXpkTY16EvQCUp4T5YhX8j0=";
+    hash = "sha256-NuU2lfwUo12PAvOgibuHWGjf3TZbEchq+QdIf9KLl08=";
   };
 
   dontUnpack = true;
