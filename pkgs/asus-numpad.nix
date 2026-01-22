@@ -7,16 +7,16 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "asus-numpad";
-  version = "unstable-2024-09-15";
+  version = "0-unstable-2025-04-02";
 
   src = fetchFromGitHub {
     owner = "iamkroot";
     repo = "asus-numpad";
-    rev = "e78875c1f4c58e06199737f4ef5c6f48ac7cb21b";
-    hash = "sha256-5FqM80zUDucDA0VocJ7ODmKAC6gcd9QwBOHVVKa6iMI=";
+    rev = "87900f8c00a3860e659812cd42f9439e529f8c2e";
+    hash = "sha256-XtYM04c6dolO77neyAKBHBrx5smaPlLSjPM7+F1ko4Q=";
   };
 
-  cargoHash = "sha256-pysUNC7ZKM7HewzQx0i0FPCHcm5TOt6pORmgOKmqIWQ=";
+  cargoHash = "sha256-RdLTYFK5ei7VDBsRwcScQIPaJ6DdnNmgE8pl3DVQhYs=";
 
   nativeBuildInputs = [
     pkg-config
