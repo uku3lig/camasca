@@ -7,10 +7,10 @@
   file,
   gtk2-x11,
   gtk3,
+  libxxf86vm,
   makeDesktopItem,
   makeWrapper,
   temurin-bin-17,
-  xorg,
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "sql-developer";
@@ -30,8 +30,8 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   buildInputs = [
     gtk2-x11
     gtk3
+    libxxf86vm
     temurin-bin-17
-    xorg.libXxf86vm
   ];
 
   autoPatchelfIgnoreMissingDeps = [ "libav*" ];

@@ -3,16 +3,20 @@
   stdenv,
   alsa-lib,
   autoPatchelfHook,
-  fetchurl,
-  xorg,
-  zlib,
-  gtk3,
   cairo,
-  glib,
   cups,
+  fetchurl,
+  freetype,
+  glib,
+  gtk3,
+  libx11,
+  libxext,
+  libxi,
+  libxrender,
+  libxtst,
   makeWrapper,
   setJavaClassPath,
-  freetype,
+  zlib,
 }:
 let
   runtimeLibs = [
@@ -39,11 +43,11 @@ stdenv.mkDerivation (finalAttrs: {
   buildInputs = [
     alsa-lib
     freetype
-    xorg.libX11
-    xorg.libXext
-    xorg.libXi
-    xorg.libXrender
-    xorg.libXtst
+    libx11
+    libxext
+    libxi
+    libxrender
+    libxtst
     zlib
   ];
 
