@@ -38,6 +38,7 @@
 
       nixosModules = {
         asus-numpad = lib.modules.importApply ./modules/asus-numpad.nix { inherit self; };
+        matrix-authentication-service = import ./modules/matrix-authentication-service.nix;
         shlink = lib.modules.importApply ./modules/shlink.nix { inherit self; };
       };
 
