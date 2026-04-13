@@ -10,5 +10,4 @@ final: prev: {
   sql-developer = prev.callPackage ./sql-developer.nix { };
   touhou-cursors = prev.callPackage ./touhou-cursors.nix { };
   vineflower = prev.callPackage ./vineflower.nix { };
-  wl-tray-bridge = prev.callPackage ./wl-tray-bridge.nix { };
 }
