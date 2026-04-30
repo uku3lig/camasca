@@ -6,11 +6,11 @@
 }:
 stdenv.mkDerivation (finalAttrs: {
   pname = "vineflower";
-  version = "1.11.2";
+  version = "1.12.0";
 
   src = fetchurl {
     url = "https://github.com/Vineflower/vineflower/releases/download/${finalAttrs.version}/vineflower-${finalAttrs.version}.jar";
-    hash = "sha256-4eJBXn94s0lgQCxL7d/IjgM9eEKiPs0TKo7C6t1U9r8=";
+    hash = "sha256-Hfz+l0OVc0+kZ85iBmHHYj0FuoNnDeBSmx+9Y/9Ui50=";
   };
 
   nativeBuildInputs = [ makeWrapper ];
