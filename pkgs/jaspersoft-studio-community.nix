@@ -17,6 +17,7 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     name = "js-studiocomm_${finalAttrs.version}_linux_x86_64.tgz";
     url = "https://community.jaspersoft.com/download-jaspersoft/community-edition/jaspersoft-studio_${finalAttrs.version}";
     hash = "sha256-PnMIc2HvGF+qdeuqPmua3XYh3KhnSQuPN9Ugg/Hfvn0=";
+    meta.license = [ ];
   };
 
   nativeBuildInputs = [
