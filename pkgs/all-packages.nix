@@ -3,6 +3,7 @@ final: prev: {
   enigma = prev.callPackage ./enigma.nix { };
   hulk-gamma = prev.callPackage ./hulk-gamma.nix { };
   jaspersoft-studio-community = prev.callPackage ./jaspersoft-studio-community.nix { };
+  jellyfin-pgsql = prev.callPackage ./jellyfin-pgsql/package.nix { };
   liberica-17 = prev.callPackage ./liberica.nix { };
   openwebstart = prev.callPackage ./openwebstart.nix { };
   project-sekai-cursors = prev.callPackage ./project-sekai-cursors/package.nix { };
