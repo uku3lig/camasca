@@ -5,13 +5,13 @@
 }:
 php85.buildComposerProject (finalAttrs: {
   pname = "shlink";
-  version = "5.1.4";
+  version = "5.1.5";
 
   src = fetchFromGitHub {
     owner = "shlinkio";
     repo = "shlink";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-0wK3R64Tw1V+/lSrdWmARrHaaaUpM3UMOTOPXAZ43mw=";
+    hash = "sha256-5Kz98zgWh8a/SDNLS+C1G+KBRrrPbYVYWv/lugJFGIs=";
   };
 
   patches = [ ./datadir.patch ];
