@@ -4,11 +4,11 @@
 }:
 appimageTools.wrapType2 (finalAttrs: {
   pname = "helium";
-  version = "0.15.4.1";
+  version = "0.15.7.1";
 
   src = fetchurl {
     url = "https://github.com/imputnet/helium-linux/releases/download/${finalAttrs.version}/helium-${finalAttrs.version}-x86_64.AppImage";
-    hash = "sha256-h3yxZnMb/EHvPJALQlJgHUVYUNsfuv0pnewgf6K6sx8=";
+    hash = "sha256-+zGEGfhIiZWE8mUYb3HrkoM7reFBMdfXlgw3KWT0T98=";
   };
 
   extraInstallCommands = ''
