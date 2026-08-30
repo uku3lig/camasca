@@ -51,6 +51,6 @@ rustPlatform.buildRustPackage (finalAttrs: {
   meta = {
     homepage = "https://overlay.girlglock.com";
     platforms = lib.platforms.linux;
-    license = lib.license.gpl3;
+    license = lib.licenses.gpl3;
   };
 })
