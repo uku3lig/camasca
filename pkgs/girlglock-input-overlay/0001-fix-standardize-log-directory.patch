@@ -1,0 +1,31 @@
+From 782ab4fa8295e3801e220b1dbcd0550b5d483d2a Mon Sep 17 00:00:00 2001
+From: uku <hi@uku.moe>
+Date: Sun, 30 Aug 2026 13:12:20 +0200
+Subject: [PATCH] fix: standardize log directory
+
+---
+ ws-server/src-tauri/src/lib.rs | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/ws-server/src-tauri/src/lib.rs b/ws-server/src-tauri/src/lib.rs
+index 5173edd..31fbf19 100644
+--- a/ws-server/src-tauri/src/lib.rs
++++ b/ws-server/src-tauri/src/lib.rs
+@@ -334,10 +334,11 @@ pub fn run() {
+         std::env::set_var("WEBKIT_DISABLE_COMPOSITING_MODE", "1");
+     }
+ 
+-    let data_dir = std::env::current_exe()
++    let data_dir = std::env::home_dir()
+         .expect("failed to get exe path")
+-        .parent()
+-        .expect("exe has no parent dir")
++        .join(".local")
++        .join("share")
++        .join("girlglock-input-overlay")
+         .to_path_buf();
+ 
+     let log_dir = data_dir.join("logs");
+-- 
+2.55.0
+
