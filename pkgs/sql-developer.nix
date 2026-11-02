@@ -5,7 +5,6 @@
   copyDesktopItems,
   fetchzip,
   file,
-  gtk2-x11,
   gtk3,
   libxxf86vm,
   makeDesktopItem,
@@ -14,11 +13,11 @@
 }:
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "sql-developer";
-  version = "24.3.1.347.1826";
+  version = "26.2.0.186.2220";
 
   src = fetchzip {
     url = "https://download.oracle.com/otn_software/java/sqldeveloper/sqldeveloper-${finalAttrs.version}-no-jre.zip";
-    hash = "sha256-y32TVnCuLhpHpo2nn8wOV1zV7nuRnBkApSxrOhx7wZg=";
+    hash = "sha256-2krtyGbUgl4AuaCPWfSqpg9mTCIYn7Jk8jKEIgfK1ac=";
   };
 
   nativeBuildInputs = [
@@ -28,13 +27,16 @@ stdenvNoCC.mkDerivation (finalAttrs: {
   ];
 
   buildInputs = [
-    gtk2-x11
     gtk3
     libxxf86vm
     temurin-bin-17
   ];
 
-  autoPatchelfIgnoreMissingDeps = [ "libav*" ];
+  autoPatchelfIgnoreMissingDeps = [
+    "libav*"
+    "libgtk-x11-2.0*"
+    "libgdk-x11-2.0*"
+  ];
 
   postBuild = ''
     echo "AddVM9OrHigherOption --add-exports=java.desktop/com.sun.java.swing.plaf.gtk=ALL-UNNAMED" >> ide/bin/jdk.conf
