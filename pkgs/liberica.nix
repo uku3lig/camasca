@@ -28,11 +28,11 @@ let
 in
 stdenv.mkDerivation (finalAttrs: {
   pname = "liberica-jdk-bin";
-  version = "17.0.18+10";
+  version = "17.0.21.0.3+5";
 
   src = fetchurl {
     url = "https://download.bell-sw.com/java/${finalAttrs.version}/bellsoft-jdk${finalAttrs.version}-linux-amd64.tar.gz";
-    hash = "sha256-uJ7yaEcewFxyFx0D+84A+Z9t+HzaBH7AZFyxwSQhMfg=";
+    hash = "sha256-/IeRezcTVMMsCvO5A/dIi8ON9w2F5f5bCnZmLyqBkek=";
   };
 
   nativeBuildInputs = [
