@@ -1,14 +1,23 @@
 {
+  stdenv,
   appimageTools,
   fetchurl,
 }:
+let
+  arch = if stdenv.hostPlatform.isx86 then "x86_64" else "arm64";
+
+  hashes = {
+    x86_64-linux = "sha256-aJs8ayXmGSRpXDYOfhi4vgHlXBJ+nHQaCGMr9xibAYg=";
+    aarch64-linux = "sha256-qaYnlaRaGSeO4s/CmjN4svo2nTyBh/of7OCYVXxYBJI=";
+  };
+in
 appimageTools.wrapType2 (finalAttrs: {
   pname = "helium";
-  version = "0.19.2.1";
+  version = "0.22.4.1";
 
   src = fetchurl {
-    url = "https://github.com/imputnet/helium-linux/releases/download/${finalAttrs.version}/helium-${finalAttrs.version}-x86_64.AppImage";
-    hash = "sha256-oEVQo8fHC9rTrNOkQw7ajSr8C/cXOpxYpAP+q5UXCH8=";
+    url = "https://github.com/imputnet/helium-linux/releases/download/${finalAttrs.version}/helium-${finalAttrs.version}-${arch}.AppImage";
+    hash = hashes.${stdenv.hostPlatform.system};
   };
 
   extraInstallCommands = ''
@@ -22,6 +31,9 @@ appimageTools.wrapType2 (finalAttrs: {
 
   meta = {
     mainProgram = "helium";
-    platforms = [ "x86_64-linux" ];
+    platforms = [
+      "x86_64-linux"
+      "aarch64-linux"
+    ];
   };
 })
